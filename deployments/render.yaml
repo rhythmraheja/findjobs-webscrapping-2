@@ -1,6 +1,9 @@
 services:
-  - name: job-scraper
-    type: web
+  - type: web
+    name: flask-backend
     env: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn wsgi:app
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn app:app"
+    envVars:
+      - key: DATABASE_URL
+        value: "mysql://avnadmin:AVNS_NupNtD7YICEXOkPChNu@web-scrap-portal123-99.l.aivencloud.com:18173/defaultdb?ssl_mode=REQUIRED"
