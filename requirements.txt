@@ -4,7 +4,6 @@ flask_cors
 requests
 bs4
 spacy
-spacy download en_core_web_sm
 docx2txt
 pymysql
 PyPDF2

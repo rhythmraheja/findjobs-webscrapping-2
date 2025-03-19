@@ -3,6 +3,7 @@ import docx2txt
 import PyPDF2
 import re
 import os
+spacy.cli.download("en_core_web_sm")
 
 nlp = spacy.load("en_core_web_sm")
 
