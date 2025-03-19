@@ -1,0 +1,10 @@
+flask
+flask_sqlalchemy
+flask_cors
+requests
+bs4
+spacy
+docx2txt
+pymysql
+PyPDF2
+gunicorn
