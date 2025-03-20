@@ -18,7 +18,7 @@ def upload_resume():
     skills = parse_resume(file_path)
     return jsonify({"skills": skills})
 
-@job_routes.route("/jobs", methods=["POST"])
+@job_routes.route("/get_jobs", methods=["POST"])
 def get_jobs():
     skills = request.json.get("skills", [])
     all_jobs = []
