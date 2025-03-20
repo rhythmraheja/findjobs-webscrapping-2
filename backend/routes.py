@@ -12,7 +12,7 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 @resume_routes.route("/upload", methods=["POST"])
 def upload_resume():
     file = request.files["resume"]
-    os.path.join(UPLOAD_FOLDER, file.filename)
+    file_path=os.path.join(UPLOAD_FOLDER, file.filename)
     file.save(file_path)
 
     skills = parse_resume(file_path)
