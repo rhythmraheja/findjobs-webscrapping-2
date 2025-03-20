@@ -5,11 +5,13 @@ from models import db, Job
 
 resume_routes = Blueprint("resume_routes", __name__)
 job_routes = Blueprint("job_routes", __name__)
+UPLOAD_FOLDER = "/tmp/uploads"
+os.makedirs(UPLOAD_FOLDER, exist_ok=True) 
 
 @resume_routes.route("/upload", methods=["POST"])
 def upload_resume():
     file = request.files["resume"]
-    file_path = "uploads/" + file.filename
+    os.path.join(UPLOAD_FOLDER, file.filename)
     file.save(file_path)
 
     skills = parse_resume(file_path)
