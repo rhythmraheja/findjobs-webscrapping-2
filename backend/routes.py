@@ -2,6 +2,7 @@ from flask import Blueprint, request, jsonify
 from resume_parser import parse_resume
 from job_scraper import scrape_jobs
 from models import db, Job
+import os
 
 resume_routes = Blueprint("resume_routes", __name__)
 job_routes = Blueprint("job_routes", __name__)
