@@ -4,6 +4,8 @@ import PyPDF2
 import re
 import os
 from pyresparser import ResumeParser
+import nltk
+nltk.download('stopwords')
 spacy.cli.download("en_core_web_sm")
 
 nlp = spacy.load("en_core_web_sm")

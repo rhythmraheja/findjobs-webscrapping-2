@@ -10,3 +10,4 @@ PyPDF2
 gunicorn
 mysqlclient
 pyresparser
+nltk
