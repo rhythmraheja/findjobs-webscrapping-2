@@ -3,9 +3,14 @@ import docx2txt
 import PyPDF2
 import re
 import os
-from pyresparser import ResumeParser
 import nltk
-nltk.download('stopwords')
+from pyresparser import ResumeParser
+nltk_data_path = "/opt/render/nltk_data"
+os.makedirs(nltk_data_path, exist_ok=True)  # Create directory if it doesn't exist
+nltk.data.path.append(nltk_data_path)  # Append to NLTK's search path
+nltk.download('stopwords', download_dir=nltk_data_path)  
+
+
 spacy.cli.download("en_core_web_sm")
 
 nlp = spacy.load("en_core_web_sm")
