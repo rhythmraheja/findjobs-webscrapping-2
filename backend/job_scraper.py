@@ -1,23 +1,39 @@
 import requests
 from bs4 import BeautifulSoup
+import requests
+import os
 
 def scrape_jobs(skill):
     jobs = []
-    indeed_url = f"https://www.indeed.com/jobs?q={skill}&l=remote"
-    response = requests.get(indeed_url)
-    soup = BeautifulSoup(response.text, "html.parser")
+    api_key = os.getenv("SERPAPI_KEY")  # Load API key from environment variables
 
-    for job_card in soup.find_all("div", class_="job_seen_beacon"):
-        title = job_card.find("h2").text.strip()
-        company = job_card.find("span", class_="companyName").text.strip()
-        location = job_card.find("div", class_="companyLocation").text.strip()
-        apply_link = "https://www.indeed.com" + job_card.find("a")["href"]
+    if not api_key:
+        raise ValueError("SERPAPI_KEY is not set. Please configure your API key.")
 
-        jobs.append({
-            "title": title,
-            "company": company,
-            "location": location,
-            "apply_link": apply_link
-        })
+    params = {
+        "engine": "google_jobs",
+        "q": skill,  # No site restriction → fetch from all sources
+        "hl": "en",
+        "api_key": api_key
+    }
+
+    response = requests.get("https://serpapi.com/search", params=params)
+    
+    if response.status_code == 200:
+        data = response.json()
+        if "jobs_results" in data:
+            for job in data["jobs_results"]:
+                jobs.append({
+                    "title": job.get("title", "N/A"),
+                    "company": job.get("company_name", "N/A"),
+                    "location": job.get("location", "N/A"),
+                    "source": job.get("detected_extensions", {}).get("source", "Unknown"),
+                    "apply_link": (job.get("apply_options") or [{}])[0].get("link", "N/A")
+                })
+    else:
+        print("Error:", response.status_code, response.text)
 
     return jobs
+
+# Example usage:
+print(scrape_jobs("Software Engineer"))
