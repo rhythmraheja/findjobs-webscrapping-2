@@ -34,6 +34,3 @@ def scrape_jobs(skill):
         print("Error:", response.status_code, response.text)
 
     return jobs
-
-# Example usage:
-print(scrape_jobs("Software Engineer"))
