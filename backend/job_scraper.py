@@ -35,3 +35,5 @@ def scrape_jobs(skill):
 
     return jobs
 
+# Example usage:
+print(scrape_jobs("Software Engineer"))
