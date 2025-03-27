@@ -6,7 +6,7 @@ import os
 import requests
 spacy.cli.download("en_core_web_sm")
 nlp = spacy.load("en_core_web_sm")
-API_URL = "https://api-inference.huggingface.co/models/d4data/bert-base-NER-job-skills"
+API_URL = "https://api-inference.huggingface.co/models/Nucha/Nucha_ITSkillNER_BERT"
 HEADERS = {"Authorization": "Bearer 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"}
 
 def extract_text_from_pdf(pdf_path):
